@@ -2,7 +2,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card';
@@ -19,10 +18,6 @@ export default function HomePage() {
           {Math.round(94)}%
         </div>
       </CardContent>
-      <CardFooter className='flex flex-col items-center justify-center'>
-        <p></p>
-        <p></p>
-      </CardFooter>
     </Card>
   );
 }

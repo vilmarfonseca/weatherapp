@@ -8,8 +8,8 @@ export default function HomePage() {
       <section className='bg-white'>
         <div className='layout relative flex min-h-screen items-center justify-center py-12 text-center gap-5'>
           <div className='flex gap-6'>
-            <CurrentWeather />
             <Humidity />
+            <CurrentWeather />
             <Wind />
           </div>
         </div>
