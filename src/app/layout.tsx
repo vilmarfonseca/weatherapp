@@ -3,6 +3,8 @@ import * as React from 'react';
 
 import '@/styles/globals.css';
 
+import Footer from '@/components/Footer';
+
 import { siteConfig } from '@/constant/config';
 
 export const metadata: Metadata = {
@@ -37,7 +39,10 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
