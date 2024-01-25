@@ -1,3 +1,4 @@
+import { SearchDialog } from '@/components/SearchDialog';
 import { Label } from '@/components/ui/Label';
 import { Switch } from '@/components/ui/Switch';
 import CurrentWeather from '@/components/widgets/CurrentWeather';
@@ -9,9 +10,12 @@ export default function HomePage() {
     <main>
       <section className='bg-white'>
         <div className='layout relative flex flex-col min-h-screen items-center justify-center py-12 text-center gap-5'>
-          <div className='flex items-center space-x-2'>
-            <Switch id='airplane-mode' />
-            <Label htmlFor='airplane-mode'>Celsius</Label>
+          <div className='flex justify-center gap-10 w-full'>
+            <div className='flex items-center space-x-2'>
+              <Switch id='airplane-mode' />
+              <Label htmlFor='airplane-mode'>Celsius</Label>
+            </div>
+            <SearchDialog />
           </div>
           <div className='flex gap-6'>
             <Humidity />
