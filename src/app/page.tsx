@@ -1,7 +1,9 @@
-import { notFound } from 'next/navigation';
+'use client';
+
+import { useEffect, useState } from 'react';
 
 import { getCurrentWeather } from '@/lib/api/getCurrentWeather';
-import { DEFAULT_LOCATION, DEFAULT_UNIT } from '@/lib/config';
+import { DEFAULT_LOCATION, DEFAULT_UNIT, INITIAL_VALUES } from '@/lib/config';
 import { CurrentForecastResponse } from '@/lib/types';
 
 import { SearchDialog } from '@/components/SearchDialog';
@@ -17,23 +19,33 @@ interface searchParamsProps {
   lon: string;
 }
 
-export default async function HomePage({
+export default function HomePage({
   searchParams,
 }: {
   searchParams: searchParamsProps;
 }) {
   const { lat, lon } = DEFAULT_LOCATION.coord;
+  const [loading, setLoading] = useState(true);
+  const [currentWeatherData, setCurrentWeatherData] =
+    useState<CurrentForecastResponse>(INITIAL_VALUES);
 
-  const CurrentForecastRequest: CurrentForecastResponse =
-    await getCurrentWeather({
-      lat: searchParams.lat || lat,
-      lon: searchParams.lon || lon,
-      units: searchParams.units || DEFAULT_UNIT,
-    });
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      setLoading(true);
+      const CurrentForecastRequest = await getCurrentWeather({
+        lat: searchParams.lat || lat,
+        lon: searchParams.lon || lon,
+        units: searchParams.units || DEFAULT_UNIT,
+      });
 
-  const [currentWeatherData] = await Promise.resolve([CurrentForecastRequest]);
+      await Promise.resolve([CurrentForecastRequest]).then((data) => {
+        setCurrentWeatherData(data[0]);
+        setLoading(false);
+      });
+    };
 
-  if (!currentWeatherData) return notFound();
+    fetchWeatherData();
+  }, [lat, lon, searchParams]);
 
   const { main, weather, name: cityName, wind } = currentWeatherData;
 
@@ -53,10 +65,15 @@ export default async function HomePage({
               city={cityName}
               conditions={weather}
               mainData={main}
+              loading={loading}
             />
             <div className='flex flex-col gap-5'>
-              <Humidity value={main.humidity} />
-              <Wind data={wind} unit={searchParams.units || DEFAULT_UNIT} />
+              <Humidity value={main.humidity} loading={loading} />
+              <Wind
+                data={wind}
+                unit={searchParams.units || DEFAULT_UNIT}
+                loading={loading}
+              />
             </div>
           </div>
         </div>

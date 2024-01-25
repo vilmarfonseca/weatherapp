@@ -15,9 +15,9 @@ export type MainData = {
 };
 
 export type Conditions = {
-  id: number;
+  id?: number;
   main: string;
-  description: string;
+  description?: string;
   icon: string;
 };
 
