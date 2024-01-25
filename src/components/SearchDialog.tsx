@@ -49,7 +49,7 @@ export function SearchDialog() {
       <DialogTrigger asChild onClick={() => setOpen(true)}>
         <Button
           variant='outline'
-          className='text-gray-400 bg-gray-100 flex w-40'
+          className='text-gray-400 bg-gray-100 dark:bg-dark flex w-40 sm:w-64'
         >
           Search city...
         </Button>
@@ -74,7 +74,7 @@ export function SearchDialog() {
               ? cities.map((city: City) => (
                   <div
                     key={city.lat + city.lon}
-                    className='hover:bg-gray-200 px-3 py-2 cursor-pointer rounded'
+                    className='hover:bg-gray-200 dark:hover:text-black px-3 py-2 cursor-pointer rounded'
                     onClick={() => handleCityClick(city)}
                   >
                     {city.name

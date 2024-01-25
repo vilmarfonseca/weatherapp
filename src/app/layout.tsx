@@ -4,6 +4,7 @@ import * as React from 'react';
 import '@/styles/globals.css';
 
 import Footer from '@/components/Footer';
+import { ThemeProvider } from '@/components/ThemeProvder';
 
 import { siteConfig } from '@/constant/config';
 
@@ -40,8 +41,10 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        {children}
-        <Footer />
+        <ThemeProvider attribute='class' defaultTheme='system'>
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

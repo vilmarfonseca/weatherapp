@@ -5,6 +5,7 @@ import { DEFAULT_LOCATION, DEFAULT_UNIT } from '@/lib/config';
 import { CurrentForecastResponse } from '@/lib/types';
 
 import { SearchDialog } from '@/components/SearchDialog';
+import { ModeToggle } from '@/components/ui/ModeToggle';
 import ToggleUnits from '@/components/ui/ToggleUnits';
 import CurrentWeather from '@/components/widgets/CurrentWeather';
 import Humidity from '@/components/widgets/Humidity';
@@ -39,10 +40,13 @@ export default async function HomePage({
   return (
     <main>
       <section>
-        <div className='layout relative flex flex-col min-h-screen items-center justify-center py-12 text-center gap-8 sm:gap-5'>
-          <div className='flex justify-center gap-10 w-full'>
-            <ToggleUnits />
+        <div className='layout relative max-w-screen-sm mx-auto flex flex-col min-h-screen items-center justify-center py-12 text-center gap-8 sm:gap-5'>
+          <div className='flex justify-between px-10 sm:px-8 gap-4 sm:gap-6 w-full'>
             <SearchDialog />
+            <div className='flex gap-4 sm:gap-6 flex-row-reverse sm:flex-row'>
+              <ToggleUnits />
+              <ModeToggle />
+            </div>
           </div>
           <div className='flex flex-col sm:flex-row gap-6'>
             <CurrentWeather
