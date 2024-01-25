@@ -12,7 +12,7 @@ interface HumidityProps {
 
 export default function Humidity({ value }: HumidityProps) {
   return (
-    <Card className='px-5'>
+    <Card className='px-5 sm:py-0 py-6'>
       <CardHeader>
         <CardTitle>Humidity</CardTitle>
         <CardDescription>Current Humidity</CardDescription>

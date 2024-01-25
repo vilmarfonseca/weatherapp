@@ -38,13 +38,13 @@ export default async function HomePage({
 
   return (
     <main>
-      <section className='bg-white'>
-        <div className='layout relative flex flex-col min-h-screen items-center justify-center py-12 text-center gap-5'>
+      <section>
+        <div className='layout relative flex flex-col min-h-screen items-center justify-center py-12 text-center gap-8 sm:gap-5'>
           <div className='flex justify-center gap-10 w-full'>
             <ToggleUnits />
             <SearchDialog />
           </div>
-          <div className='flex gap-6'>
+          <div className='flex flex-col sm:flex-row gap-6'>
             <CurrentWeather
               city={cityName}
               conditions={weather}

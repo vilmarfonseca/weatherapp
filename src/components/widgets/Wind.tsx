@@ -16,7 +16,7 @@ interface WindProps {
 
 export default function Wind({ data: { speed, deg }, unit }: WindProps) {
   return (
-    <Card className='px-12'>
+    <Card className='px-12 sm:py-0 py-6'>
       <CardHeader>
         <CardTitle>Wind</CardTitle>
         <CardDescription>Speed and Direction</CardDescription>
