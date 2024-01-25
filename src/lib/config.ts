@@ -1,0 +1,9 @@
+import { Location } from './types';
+
+export const DEFAULT_LOCATION: Location = {
+  city: 'Londrina',
+  coord: {
+    lat: '-23.3045',
+    lon: '-51.1696',
+  },
+};

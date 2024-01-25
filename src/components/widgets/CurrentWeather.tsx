@@ -1,3 +1,5 @@
+import { Conditions, MainData } from '@/lib/types';
+
 import {
   Card,
   CardContent,
@@ -7,21 +9,34 @@ import {
   CardTitle,
 } from '@/components/ui/Card';
 
-export default function CurrentWeather() {
+interface CurrentWeatherProps {
+  city: string;
+  conditions: Conditions[];
+  mainData: MainData;
+}
+
+export default function CurrentWeather({
+  city,
+  conditions,
+  mainData,
+}: CurrentWeatherProps) {
   return (
     <Card className='px-5'>
       <CardHeader>
-        <CardTitle>Londrina</CardTitle>
+        <CardTitle>{city}</CardTitle>
         <CardDescription>My Location</CardDescription>
       </CardHeader>
       <CardContent>
         <div className='flex justify-center text-8xl font-bold'>
-          {Math.round(32.2)}&deg;
+          {Math.round(mainData.temp)}&deg;
         </div>
       </CardContent>
       <CardFooter className='flex flex-col items-center justify-center'>
-        <p>Clear</p>
-        <p>H:30&deg; L:10&deg;</p>
+        <p>{conditions[0].main}</p>
+        <p>
+          H:{Math.round(mainData.temp_max)}&deg; L:
+          {Math.round(mainData.temp_min)}&deg;
+        </p>
       </CardFooter>
     </Card>
   );

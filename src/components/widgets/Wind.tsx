@@ -1,3 +1,5 @@
+import type { Wind } from '@/lib/types';
+
 import {
   Card,
   CardContent,
@@ -7,7 +9,7 @@ import {
 } from '@/components/ui/Card';
 import Compass from '@/components/ui/Compass';
 
-export default function Wind() {
+export default function Wind({ data: { speed, deg } }: { data: Wind }) {
   return (
     <Card className='px-12'>
       <CardHeader>
@@ -16,7 +18,7 @@ export default function Wind() {
       </CardHeader>
       <CardContent>
         <div className='flex justify-center text-8xl font-bold'>
-          <Compass speed={4.12} deg={120} />
+          <Compass speed={speed} deg={deg} />
         </div>
       </CardContent>
     </Card>

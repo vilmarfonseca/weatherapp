@@ -6,7 +6,11 @@ import {
   CardTitle,
 } from '@/components/ui/Card';
 
-export default function Humidity() {
+interface HumidityProps {
+  value: number;
+}
+
+export default function Humidity({ value }: HumidityProps) {
   return (
     <Card className='px-5'>
       <CardHeader>
@@ -15,7 +19,7 @@ export default function Humidity() {
       </CardHeader>
       <CardContent>
         <div className='flex justify-center text-8xl font-bold'>
-          {Math.round(94)}%
+          {Math.round(value)}%
         </div>
       </CardContent>
     </Card>
