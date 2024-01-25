@@ -9,7 +9,12 @@ import {
 } from '@/components/ui/Card';
 import Compass from '@/components/ui/Compass';
 
-export default function Wind({ data: { speed, deg } }: { data: Wind }) {
+interface WindProps {
+  data: Wind;
+  unit: string;
+}
+
+export default function Wind({ data: { speed, deg }, unit }: WindProps) {
   return (
     <Card className='px-12'>
       <CardHeader>
@@ -18,7 +23,7 @@ export default function Wind({ data: { speed, deg } }: { data: Wind }) {
       </CardHeader>
       <CardContent>
         <div className='flex justify-center text-8xl font-bold'>
-          <Compass speed={speed} deg={deg} />
+          <Compass speed={speed} deg={deg} unit={unit} />
         </div>
       </CardContent>
     </Card>

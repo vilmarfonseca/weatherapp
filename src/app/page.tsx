@@ -45,13 +45,15 @@ export default async function HomePage({
             <SearchDialog />
           </div>
           <div className='flex gap-6'>
-            <Humidity value={main.humidity} />
             <CurrentWeather
               city={cityName}
               conditions={weather}
               mainData={main}
             />
-            <Wind data={wind} />
+            <div className='flex flex-col gap-5'>
+              <Humidity value={main.humidity} />
+              <Wind data={wind} unit={searchParams.units || DEFAULT_UNIT} />
+            </div>
           </div>
         </div>
       </section>
