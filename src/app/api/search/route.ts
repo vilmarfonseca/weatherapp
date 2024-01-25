@@ -5,13 +5,17 @@ export async function GET(request: Request) {
   const appid = searchParams.get('appid');
 
   if (!appid) {
-    return Response.json(
-      { message: 'OpenWeather API key not found in environment variables' },
+    return new Response(
+      JSON.stringify({
+        message: 'OpenWeather API key not found in environment variables',
+      }),
       { status: 401 }
     );
   }
   if (!q || !limit) {
-    return Response.json({ message: 'Missing parameters' }, { status: 400 });
+    return new Response(JSON.stringify({ message: 'Missing parameters' }), {
+      status: 400,
+    });
   }
 
   const res = await fetch(
@@ -27,5 +31,5 @@ export async function GET(request: Request) {
 
   const data = await res.json();
 
-  return Response.json(data);
+  return new Response(JSON.stringify(data));
 }
