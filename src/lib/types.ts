@@ -27,17 +27,11 @@ export type Wind = {
 };
 
 export type City = {
-  id: number;
+  lon: number;
+  lat: number;
   name: string;
-  coord: {
-    lon: number;
-    lat: number;
-  };
+  state: string;
   country: string;
-  population: number;
-  timezone: number;
-  sunrise: number;
-  sunset: number;
 };
 
 type Coordinates = {

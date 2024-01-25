@@ -12,6 +12,8 @@ import Wind from '@/components/widgets/Wind';
 
 interface searchParamsProps {
   units: string;
+  lat: string;
+  lon: string;
 }
 
 export default async function HomePage({
@@ -23,8 +25,8 @@ export default async function HomePage({
 
   const CurrentForecastRequest: CurrentForecastResponse =
     await getCurrentWeather({
-      lat,
-      lon,
+      lat: searchParams.lat || lat,
+      lon: searchParams.lon || lon,
       units: searchParams.units || DEFAULT_UNIT,
     });
 

@@ -8,3 +8,4 @@ export const DEFAULT_LOCATION: Location = {
     lon: '-51.1696',
   },
 };
+export const DEFAULT_SEARCH_LIMIT = 5;
