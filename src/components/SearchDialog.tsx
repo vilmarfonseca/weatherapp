@@ -1,10 +1,11 @@
 'use client';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 
 import { getCity } from '@/lib/api/getCity';
 import { City } from '@/lib/types';
 
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { Button } from '@/components/ui/Button';
 import {
   Dialog,
@@ -21,10 +22,13 @@ export function SearchDialog() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
 
   const handleSearch = async (e: React.FormEvent<HTMLInputElement>) => {
     if ((e.target as HTMLInputElement).value) {
-      setCities(await getCity({ q: (e.target as HTMLInputElement).value }));
+      startTransition(async () => {
+        setCities(await getCity({ q: (e.target as HTMLInputElement).value }));
+      });
     } else {
       setCities([]);
     }
@@ -59,7 +63,7 @@ export function SearchDialog() {
           <DialogTitle>Search Location</DialogTitle>
         </DialogHeader>
         <div className='grid gap-4 py-4'>
-          <div className='flex w-full'>
+          <div className='flex w-full items-center'>
             <Input
               id='Location'
               placeholder='Londrina, PR, Brazil'
@@ -68,6 +72,11 @@ export function SearchDialog() {
               onKeyUp={handleSearch}
               value={value}
             />
+            {isPending && (
+              <div className='flex h-full items-center ml-4'>
+                <LoadingSpinner className='w-5 h-5' />
+              </div>
+            )}
           </div>
           <div className='flex flex-col'>
             {cities.length > 0
@@ -82,7 +91,7 @@ export function SearchDialog() {
                       : ''}
                   </div>
                 ))
-              : value && <span>No Cities Found</span>}
+              : !isPending && value && <span>No Cities Found</span>}
           </div>
         </div>
       </DialogContent>
