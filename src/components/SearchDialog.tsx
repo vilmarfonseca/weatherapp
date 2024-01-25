@@ -22,13 +22,16 @@ export function SearchDialog() {
   const [value, setValue] = useState('');
   const searchParams = useSearchParams();
 
-  const handleInputChange = async (e: React.FormEvent<HTMLInputElement>) => {
-    setValue((e.target as HTMLInputElement).value);
+  const handleSearch = async (e: React.FormEvent<HTMLInputElement>) => {
     if ((e.target as HTMLInputElement).value) {
       setCities(await getCity({ q: (e.target as HTMLInputElement).value }));
     } else {
       setCities([]);
     }
+  };
+
+  const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setValue((e.target as HTMLInputElement).value);
   };
 
   const handleCityClick = async (city: City) => {
@@ -51,7 +54,7 @@ export function SearchDialog() {
           Search city...
         </Button>
       </DialogTrigger>
-      <DialogContent className='sm:max-w-[425px]'>
+      <DialogContent className='sm:max-w-[425px] max-w-xs'>
         <DialogHeader>
           <DialogTitle>Search Location</DialogTitle>
         </DialogHeader>
@@ -62,6 +65,7 @@ export function SearchDialog() {
               placeholder='Londrina, PR, Brazil'
               className='w-full'
               onChange={handleInputChange}
+              onKeyUp={handleSearch}
               value={value}
             />
           </div>
