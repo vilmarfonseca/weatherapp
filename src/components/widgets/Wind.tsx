@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/Card';
 import Compass from '@/components/ui/Compass';
 
-export default function HomePage() {
+export default function Wind() {
   return (
     <Card className='px-12'>
       <CardHeader>

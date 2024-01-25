@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/Card';
 
-export default function HomePage() {
+export default function Humidity() {
   return (
     <Card className='px-5'>
       <CardHeader>

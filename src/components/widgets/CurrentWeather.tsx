@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from '@/components/ui/Card';
 
-export default function HomePage() {
+export default function CurrentWeather() {
   return (
     <Card className='px-5'>
       <CardHeader>
