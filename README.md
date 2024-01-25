@@ -32,6 +32,7 @@ The project is deployed live using Vercel.
 - Toggle between Dark and Light mode
 - Jest setup for future tests
 - Vercel deploy
+- Weather Icons provided by [OpenWeather API Icons](https://github.com/yuvraaaj/openweathermap-api-icons/)
 
 ## Installation and Setup
 
