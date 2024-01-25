@@ -1,5 +1,6 @@
 import { Location } from './types';
 
+export const DEFAULT_UNIT = 'metric';
 export const DEFAULT_LOCATION: Location = {
   city: 'Londrina',
   coord: {
